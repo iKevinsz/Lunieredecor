@@ -12,29 +12,30 @@ import {
   Menu,
   ChevronLeft,
   ChevronRight,
-  ZoomIn
+  ZoomIn,
+  ArrowUp // Ícone para o botão de voltar ao topo
 } from "lucide-react";
 
 // --- DADOS DA GALERIA ---
 const PORTFOLIO_ITEMS = [
   {
     id: 1,
-    title: "Tema Cherry",
+    title: "Fachada Loja Conceito",
     image: "/deco1.jpeg", 
   },
   {
     id: 2,
-    title: "Tema Cherry",
+    title: "Bouquet Personalizado 30 Anos",
     image: "/deco2.jpeg",
   },
   {
     id: 3,
-    title: "Tema Cherry",
+    title: "Entrada Evento Empresarial",
     image: "/deco3.jpeg",
   },
   {
     id: 4,
-    title: "Tema Cherry",
+    title: "Guirlanda Orgânica Pastel",
     image: "/deco4.jpeg",
   },
 ];
@@ -43,6 +44,28 @@ export default function LunierePortfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false); // Estado para visibilidade do botão
+
+  // --- Lógica do Botão Voltar ao Topo ---
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   // --- Lógica do Carousel Automático ---
   useEffect(() => {
@@ -105,7 +128,6 @@ export default function LunierePortfolio() {
         .balloon-shape {
            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
         }
-        /* Divisor de onda suave */
         .custom-shape-divider-bottom-1 {
             position: absolute;
             bottom: 0;
@@ -126,7 +148,7 @@ export default function LunierePortfolio() {
         }
       `}</style>
 
-      {/* --- BACKGROUND ANIMADO (Z-Index -1 para ficar atrás) --- */}
+      {/* --- BACKGROUND ANIMADO (Z-Index -1) --- */}
       <div className="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
          <div className="balloon-anim balloon-shape w-24 h-28 bg-rose-200/30 left-[10%]" style={{ animationDuration: '25s', animationDelay: '0s' }}></div>
          <div className="balloon-anim balloon-shape w-32 h-40 bg-stone-200/40 left-[80%]" style={{ animationDuration: '30s', animationDelay: '5s' }}></div>
@@ -134,7 +156,6 @@ export default function LunierePortfolio() {
          <div className="balloon-anim balloon-shape w-20 h-24 bg-amber-100/40 left-[60%]" style={{ animationDuration: '35s', animationDelay: '2s' }}></div>
          <div className="balloon-anim balloon-shape w-40 h-48 bg-white/60 left-[50%] blur-md" style={{ animationDuration: '45s', animationDelay: '15s' }}></div>
          <div className="balloon-anim balloon-shape w-28 h-36 bg-rose-100/30 left-[20%]" style={{ animationDuration: '28s', animationDelay: '8s' }}></div>
-         
          <div className="balloon-anim balloon-shape w-14 h-18 bg-stone-100/50 left-[5%]" style={{ animationDuration: '20s', animationDelay: '12s' }}></div>
          <div className="balloon-anim balloon-shape w-36 h-44 bg-rose-200/20 left-[90%]" style={{ animationDuration: '38s', animationDelay: '3s' }}></div>
          <div className="balloon-anim balloon-shape w-22 h-26 bg-amber-50/50 left-[40%]" style={{ animationDuration: '32s', animationDelay: '18s' }}></div>
@@ -144,7 +165,7 @@ export default function LunierePortfolio() {
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-stone-100 transition-all duration-300">
         <div className="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
-          <div className="flex flex-col justify-center h-full group cursor-pointer">
+          <div className="flex flex-col justify-center h-full group cursor-pointer" onClick={scrollToTop}>
             <span className="text-3xl font-serif font-bold text-stone-900 tracking-widest leading-none transition-transform duration-300 group-hover:scale-105">
               LUNIÉRE
             </span>
@@ -221,7 +242,6 @@ export default function LunierePortfolio() {
           </div>
         </div>
 
-        {/* Divisor de Onda SVG para suavizar a transição para a próxima seção */}
         <div className="custom-shape-divider-bottom-1">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
@@ -229,7 +249,7 @@ export default function LunierePortfolio() {
         </div>
       </section>
 
-      {/* --- SEPARADOR VISUAL / ESPAÇAMENTO --- */}
+      {/* --- SEPARADOR VISUAL --- */}
       <div className="h-24 bg-white relative z-10"></div> 
 
       {/* --- GALERIA CAROUSEL --- */}
@@ -307,7 +327,6 @@ export default function LunierePortfolio() {
       {/* --- SOBRE A JUYLIANNE --- */}
       <section id="sobre" className="py-32 px-6 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20 bg-white/60 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-sm border border-white/50">
-          
           <div className="w-full md:w-1/2 relative group">
             <div className="aspect-[3/4] relative rounded-t-[12rem] rounded-b-3xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:-translate-y-3">
               <Image 
@@ -385,12 +404,27 @@ export default function LunierePortfolio() {
 
           <div className="pt-20 border-t border-stone-800 text-stone-500 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
             <span>© 2026 Luniére Balões & Decoração.</span>
-            <span className="flex items-center gap-2 text-xs opacity-70 hover:opacity-100 transition-opacity">
+            {/* Link para o seu portfólio */}
+            <a 
+              href="https://kevin-fiorelo.vercel.app/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-xs opacity-70 hover:opacity-100 transition-opacity hover:text-rose-300 cursor-pointer"
+            >
               Design & Dev por Kevin Fiorelo <Heart size={12} className="text-rose-500 fill-rose-500 animate-pulse" />
-            </span>
+            </a>
           </div>
         </div>
       </footer>
+
+      {/* --- BOTÃO VOLTAR AO TOPO --- */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-8 right-8 z-50 p-4 bg-rose-900 text-white rounded-full shadow-xl transition-all duration-300 hover:bg-rose-800 hover:scale-110 active:scale-95 ${showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}
+        aria-label="Voltar ao topo"
+      >
+        <ArrowUp size={24} />
+      </button>
 
       {/* --- MODAL DE IMAGEM (LIGHTBOX) --- */}
       {selectedImageIndex !== null && (
