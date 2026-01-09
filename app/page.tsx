@@ -19,22 +19,22 @@ import {
 const PORTFOLIO_ITEMS = [
   {
     id: 1,
-    title: "Fachada Loja Conceito",
+    title: "Tema Cherry",
     image: "/deco1.jpeg", 
   },
   {
     id: 2,
-    title: "Bouquet Personalizado 30 Anos",
+    title: "Tema Cherry",
     image: "/deco2.jpeg",
   },
   {
     id: 3,
-    title: "Entrada Evento Empresarial",
+    title: "Tema Cherry",
     image: "/deco3.jpeg",
   },
   {
     id: 4,
-    title: "Guirlanda Orgânica Pastel",
+    title: "Tema Cherry",
     image: "/deco4.jpeg",
   },
 ];
