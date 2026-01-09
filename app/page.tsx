@@ -19,25 +19,24 @@ import {
 const PORTFOLIO_ITEMS = [
   {
     id: 1,
-    title: "Tema Cherry",
+    title: "Fachada Loja Conceito",
     image: "/deco1.jpeg", 
   },
   {
     id: 2,
-    title: "Tema Cherry",
+    title: "Bouquet Personalizado 30 Anos",
     image: "/deco2.jpeg",
   },
   {
     id: 3,
-    title: "Tema Cherry",
+    title: "Entrada Evento Empresarial",
     image: "/deco3.jpeg",
   },
   {
     id: 4,
-    title: "Tema Cherry",
+    title: "Guirlanda Orgânica Pastel",
     image: "/deco4.jpeg",
   },
-  // Fallbacks com Unsplash para preencher o carousel se não tiver as fotos locais
 ];
 
 export default function LunierePortfolio() {
@@ -87,36 +86,48 @@ export default function LunierePortfolio() {
   }, [selectedImageIndex, nextLightboxImage, prevLightboxImage]);
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA] text-stone-800 font-sans selection:bg-rose-200 scroll-smooth overflow-x-hidden relative">
+    <main className="min-h-screen bg-[#FAFAFA] text-stone-800 font-sans selection:bg-rose-200 scroll-smooth overflow-x-hidden relative isolate">
       
       {/* --- ESTILOS GLOBAIS E ANIMAÇÕES --- */}
       <style jsx global>{`
         @keyframes floatUp {
-          /* Começa mais abaixo para dar tempo de aparecer suavemente */
-          0% { transform: translateY(120vh) scale(0.8); opacity: 0; }
-          /* Aparece mais gradualmente */
-          20% { opacity: 0.5; } 
-          80% { opacity: 0.5; }
-          /* Termina mais acima e maior */
-          100% { transform: translateY(-20vh) scale(1.3); opacity: 0; }
+          0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+          10% { opacity: 0.6; }
+          90% { opacity: 0.6; }
+          100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
         .balloon-anim {
           position: absolute;
           border-radius: 50%;
-          filter: blur(3px); /* Um pouco mais de blur para suavizar */
+          filter: blur(3px);
           animation: floatUp linear infinite;
-          z-index: 0; 
-          pointer-events: none; /* Garante que não interferem no clique */
         }
-        /* Formato de balão levemente oval */
         .balloon-shape {
            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
         }
+        /* Divisor de onda suave */
+        .custom-shape-divider-bottom-1 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .custom-shape-divider-bottom-1 svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+        .custom-shape-divider-bottom-1 .shape-fill {
+            fill: #FFFFFF;
+        }
       `}</style>
 
-      {/* --- BALÕES FLUTUANTES (BACKGROUND FIXO - MAIS BALÕES) --- */}
-      <div className="fixed inset-0 overflow-hidden z-0">
-         {/* Balões Originais (Ajustados) */}
+      {/* --- BACKGROUND ANIMADO (Z-Index -1 para ficar atrás) --- */}
+      <div className="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
          <div className="balloon-anim balloon-shape w-24 h-28 bg-rose-200/30 left-[10%]" style={{ animationDuration: '25s', animationDelay: '0s' }}></div>
          <div className="balloon-anim balloon-shape w-32 h-40 bg-stone-200/40 left-[80%]" style={{ animationDuration: '30s', animationDelay: '5s' }}></div>
          <div className="balloon-anim balloon-shape w-16 h-20 bg-rose-300/20 left-[30%]" style={{ animationDuration: '22s', animationDelay: '10s' }}></div>
@@ -124,15 +135,10 @@ export default function LunierePortfolio() {
          <div className="balloon-anim balloon-shape w-40 h-48 bg-white/60 left-[50%] blur-md" style={{ animationDuration: '45s', animationDelay: '15s' }}></div>
          <div className="balloon-anim balloon-shape w-28 h-36 bg-rose-100/30 left-[20%]" style={{ animationDuration: '28s', animationDelay: '8s' }}></div>
          
-         {/* Novos Balões para preencher e dar fluidez */}
          <div className="balloon-anim balloon-shape w-14 h-18 bg-stone-100/50 left-[5%]" style={{ animationDuration: '20s', animationDelay: '12s' }}></div>
          <div className="balloon-anim balloon-shape w-36 h-44 bg-rose-200/20 left-[90%]" style={{ animationDuration: '38s', animationDelay: '3s' }}></div>
          <div className="balloon-anim balloon-shape w-22 h-26 bg-amber-50/50 left-[40%]" style={{ animationDuration: '32s', animationDelay: '18s' }}></div>
-         <div className="balloon-anim balloon-shape w-18 h-22 bg-rose-400/10 left-[70%]" style={{ animationDuration: '27s', animationDelay: '7s' }}></div>
          <div className="balloon-anim balloon-shape w-44 h-52 bg-white/40 left-[25%] blur-md" style={{ animationDuration: '50s', animationDelay: '22s' }}></div>
-         <div className="balloon-anim balloon-shape w-12 h-14 bg-stone-200/30 left-[45%]" style={{ animationDuration: '18s', animationDelay: '1s' }}></div>
-         <div className="balloon-anim balloon-shape w-30 h-38 bg-rose-100/40 left-[85%]" style={{ animationDuration: '33s', animationDelay: '14s' }}></div>
-         <div className="balloon-anim balloon-shape w-26 h-32 bg-amber-100/30 left-[15%]" style={{ animationDuration: '29s', animationDelay: '25s' }}></div>
       </div>
 
       {/* --- NAVBAR --- */}
@@ -180,7 +186,7 @@ export default function LunierePortfolio() {
       </nav>
 
       {/* --- HERO SECTION --- */}
-      <section id="inicio" className="pt-40 pb-20 px-6 md:pt-52 md:pb-32 relative z-10 min-h-[90vh] flex items-center justify-center">
+      <section id="inicio" className="relative z-10 pt-40 pb-32 px-6 md:pt-52 md:pb-48 min-h-[85vh] flex items-center justify-center">
         
         <div className="max-w-5xl mx-auto text-center space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <span className="inline-block px-6 py-2 rounded-full bg-white/80 backdrop-blur-sm text-rose-900 text-xs font-bold uppercase tracking-[0.2em] mb-4 border border-rose-100 shadow-sm hover:scale-105 transition-transform cursor-default">
@@ -214,16 +220,26 @@ export default function LunierePortfolio() {
             </a>
           </div>
         </div>
+
+        {/* Divisor de Onda SVG para suavizar a transição para a próxima seção */}
+        <div className="custom-shape-divider-bottom-1">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
+            </svg>
+        </div>
       </section>
 
+      {/* --- SEPARADOR VISUAL / ESPAÇAMENTO --- */}
+      <div className="h-24 bg-white relative z-10"></div> 
+
       {/* --- GALERIA CAROUSEL --- */}
-      <section id="galeria" className="py-32 px-6 relative z-10">
+      <section id="galeria" className="py-20 px-6 relative z-10 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <span className="text-rose-500 font-bold tracking-widest text-sm uppercase bg-white/50 backdrop-blur-sm px-2 py-1 rounded">Excelência Visual</span>
             <h2 className="text-4xl md:text-6xl font-serif text-stone-900 mt-3 mb-6">Nosso <span className="italic text-rose-900">Portfólio</span></h2>
             <div className="w-24 h-1 bg-gradient-to-r from-rose-400 to-amber-200 mx-auto rounded-full"></div>
-            <p className="text-stone-500 mt-6 max-w-lg mx-auto text-lg bg-white/40 backdrop-blur-[1px] rounded p-2">Instalações orgânicas e designs exclusivos, planejados para encantar em cada detalhe.</p>
+            <p className="text-stone-500 mt-6 max-w-lg mx-auto text-lg">Instalações orgânicas e designs exclusivos, planejados para encantar em cada detalhe.</p>
           </div>
 
           <div className="relative w-full aspect-[4/3] md:aspect-[16/9] max-h-[700px] overflow-hidden rounded-3xl shadow-2xl group border border-stone-100 bg-white">
@@ -388,16 +404,16 @@ export default function LunierePortfolio() {
 
           <button 
             onClick={(e) => { e.stopPropagation(); prevLightboxImage(); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-4 text-white/70 hover:text-white hover:scale-110 transition-all z-50 bg-black/20 hover:bg-black/40 rounded-full hidden md:block"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-4 text-white/70 hover:text-white hover:scale-110 transition-all z-50 bg-black/20 hover:bg-black/40 rounded-full"
           >
-            <ChevronLeft size={48} />
+            <ChevronLeft size={32} className="md:w-12 md:h-12" />
           </button>
 
           <button 
             onClick={(e) => { e.stopPropagation(); nextLightboxImage(); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-4 text-white/70 hover:text-white hover:scale-110 transition-all z-50 bg-black/20 hover:bg-black/40 rounded-full hidden md:block"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-4 text-white/70 hover:text-white hover:scale-110 transition-all z-50 bg-black/20 hover:bg-black/40 rounded-full"
           >
-            <ChevronRight size={48} />
+            <ChevronRight size={32} className="md:w-12 md:h-12" />
           </button>
           
           <div className="relative w-full max-w-7xl h-full max-h-[90vh] flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
@@ -410,7 +426,7 @@ export default function LunierePortfolio() {
                   priority
                />
              </div>
-             <h3 className="text-white text-2xl font-serif mt-6 text-center drop-shadow-md">
+             <h3 className="text-white text-xl md:text-2xl font-serif mt-6 text-center drop-shadow-md px-4">
                 {PORTFOLIO_ITEMS[selectedImageIndex].title}
              </h3>
           </div>
