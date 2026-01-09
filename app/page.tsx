@@ -186,29 +186,29 @@ export default function LunierePortfolio() {
             Arte em Balões
           </span>
           
-          {/* Título Principal com destaque na fonte */}
-          <h1 className="text-6xl md:text-8xl font-serif font-medium text-stone-900 leading-tight">
+          {/* Título Principal com destaque na fonte - Ajustado para mobile */}
+          <h1 className="text-5xl md:text-8xl font-serif font-medium text-stone-900 leading-tight md:leading-tight pb-2">
             Transformando ar em <br />
-            <span className="italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-900 via-rose-600 to-amber-700 relative inline-block drop-shadow-sm">
+            <span className="italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-900 via-rose-600 to-amber-700 relative inline-block drop-shadow-sm pb-1">
               arte e memórias.
             </span>
           </h1>
           
-          <p className="text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed font-light px-4">
             Especialista em balloon design para eventos corporativos e sociais. 
             Do bouquet minimalista às grandes instalações orgânicas, a Luniére eleva o nível da sua celebração.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 pt-10">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 pt-10 px-4">
             <a 
               href="#galeria"
-              className="px-10 py-4 bg-stone-900 text-white rounded-full hover:bg-rose-900 transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-xl active:scale-95 text-lg"
+              className="w-full sm:w-auto px-10 py-4 bg-stone-900 text-white rounded-full hover:bg-rose-900 transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-xl active:scale-95 text-lg"
             >
               Ver Nossas Criações
             </a>
             <a 
               href="#contato"
-              className="px-10 py-4 bg-white border border-stone-200 text-stone-700 rounded-full hover:bg-rose-50 hover:border-rose-200 transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-lg active:scale-95 text-lg"
+              className="w-full sm:w-auto px-10 py-4 bg-white border border-stone-200 text-stone-700 rounded-full hover:bg-rose-50 hover:border-rose-200 transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-lg active:scale-95 text-lg"
             >
               Falar no WhatsApp
             </a>
@@ -351,9 +351,9 @@ export default function LunierePortfolio() {
 
           <div className="flex flex-wrap justify-center gap-6">
             <SocialLink 
-              href="https://www.instagram.com/lunierebaloesdecor/?hl=pt-br" 
+              href="https://instagram.com" 
               icon={<Instagram size={24} />} 
-              label="@lunierebaloesdecor" 
+              label="@luniere.decor" 
             />
             <SocialLink 
               href="https://wa.me/5512999999999" 
