@@ -38,16 +38,6 @@ const PORTFOLIO_ITEMS = [
     image: "/deco4.jpeg",
   },
   // Fallbacks com Unsplash para preencher o carousel se não tiver as fotos locais
-  {
-    id: 5,
-    title: "Escultura Safari Baby",
-    image: "https://images.unsplash.com/photo-1602631985686-1bb0e6a8696e?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: 6,
-    title: "Estrutura Numérica Gigante",
-    image: "https://images.unsplash.com/photo-1531591022136-eb8b0da1e6d0?q=80&w=1200&auto=format&fit=crop",
-  },
 ];
 
 export default function LunierePortfolio() {
