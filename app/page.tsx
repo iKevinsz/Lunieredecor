@@ -38,6 +38,16 @@ const PORTFOLIO_ITEMS = [
     image: "/deco4.jpeg",
   },
   // Fallbacks com Unsplash para preencher o carousel se não tiver as fotos locais
+  {
+    id: 5,
+    title: "Escultura Safari Baby",
+    image: "https://images.unsplash.com/photo-1602631985686-1bb0e6a8696e?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    id: 6,
+    title: "Estrutura Numérica Gigante",
+    image: "https://images.unsplash.com/photo-1531591022136-eb8b0da1e6d0?q=80&w=1200&auto=format&fit=crop",
+  },
 ];
 
 export default function LunierePortfolio() {
@@ -87,14 +97,14 @@ export default function LunierePortfolio() {
   }, [selectedImageIndex, nextLightboxImage, prevLightboxImage]);
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA] text-stone-800 font-sans selection:bg-rose-200 scroll-smooth overflow-x-hidden">
+    <main className="min-h-screen bg-[#FAFAFA] text-stone-800 font-sans selection:bg-rose-200 scroll-smooth overflow-x-hidden relative">
       
       {/* --- ESTILOS GLOBAIS E ANIMAÇÕES --- */}
       <style jsx global>{`
         @keyframes floatUp {
           0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
-          10% { opacity: 0.6; }
-          90% { opacity: 0.6; }
+          10% { opacity: 0.4; } 
+          90% { opacity: 0.4; }
           100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
         .balloon-anim {
@@ -102,13 +112,30 @@ export default function LunierePortfolio() {
           border-radius: 50%;
           filter: blur(2px);
           animation: floatUp linear infinite;
-          z-index: 0;
+          z-index: 0; 
         }
         /* Formato de balão levemente oval */
         .balloon-shape {
            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
         }
       `}</style>
+
+      {/* --- BALÕES FLUTUANTES (BACKGROUND FIXO) --- */}
+      {/* Movido para fora das seções e fixado para cobrir toda a tela */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+         {/* Balão 1 */}
+         <div className="balloon-anim balloon-shape w-24 h-28 bg-rose-200/30 left-[10%]" style={{ animationDuration: '25s', animationDelay: '0s' }}></div>
+         {/* Balão 2 */}
+         <div className="balloon-anim balloon-shape w-32 h-40 bg-stone-200/40 left-[80%]" style={{ animationDuration: '30s', animationDelay: '5s' }}></div>
+         {/* Balão 3 */}
+         <div className="balloon-anim balloon-shape w-16 h-20 bg-rose-300/20 left-[30%]" style={{ animationDuration: '20s', animationDelay: '10s' }}></div>
+         {/* Balão 4 */}
+         <div className="balloon-anim balloon-shape w-20 h-24 bg-amber-100/50 left-[60%]" style={{ animationDuration: '35s', animationDelay: '2s' }}></div>
+         {/* Balão 5 (fundo) */}
+         <div className="balloon-anim balloon-shape w-40 h-48 bg-white/60 left-[50%] blur-sm" style={{ animationDuration: '40s', animationDelay: '15s' }}></div>
+         {/* Balão 6 (extra para cobrir mais espaço) */}
+         <div className="balloon-anim balloon-shape w-28 h-36 bg-rose-100/30 left-[20%]" style={{ animationDuration: '28s', animationDelay: '8s' }}></div>
+      </div>
 
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-stone-100 transition-all duration-300">
@@ -154,37 +181,23 @@ export default function LunierePortfolio() {
         </div>
       </nav>
 
-      {/* --- HERO SECTION COM ANIMAÇÃO DE BALÕES --- */}
-      <section id="inicio" className="pt-40 pb-20 px-6 md:pt-52 md:pb-32 bg-stone-50 overflow-hidden relative min-h-[90vh] flex items-center justify-center">
+      {/* --- HERO SECTION --- */}
+      {/* Adicionado 'relative z-10' para garantir que o conteúdo fique sobre os balões */}
+      <section id="inicio" className="pt-40 pb-20 px-6 md:pt-52 md:pb-32 relative z-10 min-h-[90vh] flex items-center justify-center">
         
-        {/* BALÕES FLUTUANTES (BACKGROUND) */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-           {/* Balão 1 */}
-           <div className="balloon-anim balloon-shape w-24 h-28 bg-rose-200/40 left-[10%]" style={{ animationDuration: '15s', animationDelay: '0s' }}></div>
-           {/* Balão 2 */}
-           <div className="balloon-anim balloon-shape w-32 h-40 bg-stone-200/50 left-[80%]" style={{ animationDuration: '18s', animationDelay: '2s' }}></div>
-           {/* Balão 3 */}
-           <div className="balloon-anim balloon-shape w-16 h-20 bg-rose-300/30 left-[30%]" style={{ animationDuration: '12s', animationDelay: '5s' }}></div>
-           {/* Balão 4 */}
-           <div className="balloon-anim balloon-shape w-20 h-24 bg-amber-100/60 left-[60%]" style={{ animationDuration: '20s', animationDelay: '1s' }}></div>
-           {/* Balão 5 (fundo) */}
-           <div className="balloon-anim balloon-shape w-40 h-48 bg-white/80 left-[50%] blur-sm" style={{ animationDuration: '25s', animationDelay: '8s' }}></div>
-        </div>
-        
-        <div className="max-w-5xl mx-auto text-center space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative z-10">
+        <div className="max-w-5xl mx-auto text-center space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <span className="inline-block px-6 py-2 rounded-full bg-white/80 backdrop-blur-sm text-rose-900 text-xs font-bold uppercase tracking-[0.2em] mb-4 border border-rose-100 shadow-sm hover:scale-105 transition-transform cursor-default">
             Arte em Balões
           </span>
           
-          {/* Título Principal com destaque na fonte - Ajustado para mobile */}
-          <h1 className="text-5xl md:text-8xl font-serif font-medium text-stone-900 leading-tight md:leading-tight pb-2">
+          <h1 className="text-5xl md:text-8xl font-serif font-medium text-stone-900 leading-tight md:leading-tight pb-2 drop-shadow-sm bg-white/30 backdrop-blur-[2px] rounded-lg md:bg-transparent md:backdrop-blur-none">
             Transformando ar em <br />
             <span className="italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-900 via-rose-600 to-amber-700 relative inline-block drop-shadow-sm pb-1">
               arte e memórias.
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed font-light px-4">
+          <p className="text-lg md:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed font-light px-4 bg-white/40 backdrop-blur-[2px] rounded-lg md:bg-transparent md:backdrop-blur-none py-2 md:py-0">
             Especialista em balloon design para eventos corporativos e sociais. 
             Do bouquet minimalista às grandes instalações orgânicas, a Luniére eleva o nível da sua celebração.
           </p>
@@ -198,7 +211,7 @@ export default function LunierePortfolio() {
             </a>
             <a 
               href="#contato"
-              className="w-full sm:w-auto px-10 py-4 bg-white border border-stone-200 text-stone-700 rounded-full hover:bg-rose-50 hover:border-rose-200 transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-lg active:scale-95 text-lg"
+              className="w-full sm:w-auto px-10 py-4 bg-white/80 backdrop-blur-sm border border-stone-200 text-stone-700 rounded-full hover:bg-rose-50 hover:border-rose-200 transition-all duration-300 font-medium hover:-translate-y-1 hover:shadow-lg active:scale-95 text-lg"
             >
               Falar no WhatsApp
             </a>
@@ -207,16 +220,16 @@ export default function LunierePortfolio() {
       </section>
 
       {/* --- GALERIA CAROUSEL --- */}
-      <section id="galeria" className="py-32 px-6 bg-white relative">
+      <section id="galeria" className="py-32 px-6 relative z-10"> {/* z-10 adicionado */}
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <span className="text-rose-500 font-bold tracking-widest text-sm uppercase">Excelência Visual</span>
+            <span className="text-rose-500 font-bold tracking-widest text-sm uppercase bg-white/50 backdrop-blur-sm px-2 py-1 rounded">Excelência Visual</span>
             <h2 className="text-4xl md:text-6xl font-serif text-stone-900 mt-3 mb-6">Nosso <span className="italic text-rose-900">Portfólio</span></h2>
             <div className="w-24 h-1 bg-gradient-to-r from-rose-400 to-amber-200 mx-auto rounded-full"></div>
-            <p className="text-stone-500 mt-6 max-w-lg mx-auto text-lg">Instalações orgânicas e designs exclusivos, planejados para encantar em cada detalhe.</p>
+            <p className="text-stone-500 mt-6 max-w-lg mx-auto text-lg bg-white/40 backdrop-blur-[1px] rounded p-2">Instalações orgânicas e designs exclusivos, planejados para encantar em cada detalhe.</p>
           </div>
 
-          <div className="relative w-full aspect-[4/3] md:aspect-[16/9] max-h-[700px] overflow-hidden rounded-3xl shadow-2xl group border border-stone-100">
+          <div className="relative w-full aspect-[4/3] md:aspect-[16/9] max-h-[700px] overflow-hidden rounded-3xl shadow-2xl group border border-stone-100 bg-white">
             <div 
                 className="w-full h-full flex transition-transform duration-1000 cubic-bezier(0.4, 0, 0.2, 1)"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -279,8 +292,8 @@ export default function LunierePortfolio() {
       </section>
 
       {/* --- SOBRE A JUYLIANNE --- */}
-      <section id="sobre" className="py-32 px-6 bg-[#FDFBF7]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
+      <section id="sobre" className="py-32 px-6 relative z-10"> {/* z-10 adicionado */}
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20 bg-white/60 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-sm border border-white/50">
           
           <div className="w-full md:w-1/2 relative group">
             <div className="aspect-[3/4] relative rounded-t-[12rem] rounded-b-3xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:-translate-y-3">
@@ -330,7 +343,7 @@ export default function LunierePortfolio() {
       </section>
 
       {/* --- FOOTER --- */}
-      <footer id="contato" className="bg-stone-950 text-white pt-32 pb-16 px-6">
+      <footer id="contato" className="bg-stone-950 text-white pt-32 pb-16 px-6 relative z-10"> {/* z-10 adicionado */}
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <h2 className="text-4xl md:text-6xl font-serif font-medium leading-tight">
             Vamos inflar essa ideia?
