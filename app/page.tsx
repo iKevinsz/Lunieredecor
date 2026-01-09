@@ -102,17 +102,21 @@ export default function LunierePortfolio() {
       {/* --- ESTILOS GLOBAIS E ANIMAÇÕES --- */}
       <style jsx global>{`
         @keyframes floatUp {
-          0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
-          10% { opacity: 0.4; } 
-          90% { opacity: 0.4; }
-          100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+          /* Começa mais abaixo para dar tempo de aparecer suavemente */
+          0% { transform: translateY(120vh) scale(0.8); opacity: 0; }
+          /* Aparece mais gradualmente */
+          20% { opacity: 0.5; } 
+          80% { opacity: 0.5; }
+          /* Termina mais acima e maior */
+          100% { transform: translateY(-20vh) scale(1.3); opacity: 0; }
         }
         .balloon-anim {
           position: absolute;
           border-radius: 50%;
-          filter: blur(2px);
+          filter: blur(3px); /* Um pouco mais de blur para suavizar */
           animation: floatUp linear infinite;
           z-index: 0; 
+          pointer-events: none; /* Garante que não interferem no clique */
         }
         /* Formato de balão levemente oval */
         .balloon-shape {
@@ -120,21 +124,25 @@ export default function LunierePortfolio() {
         }
       `}</style>
 
-      {/* --- BALÕES FLUTUANTES (BACKGROUND FIXO) --- */}
-      {/* Movido para fora das seções e fixado para cobrir toda a tela */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-         {/* Balão 1 */}
+      {/* --- BALÕES FLUTUANTES (BACKGROUND FIXO - MAIS BALÕES) --- */}
+      <div className="fixed inset-0 overflow-hidden z-0">
+         {/* Balões Originais (Ajustados) */}
          <div className="balloon-anim balloon-shape w-24 h-28 bg-rose-200/30 left-[10%]" style={{ animationDuration: '25s', animationDelay: '0s' }}></div>
-         {/* Balão 2 */}
          <div className="balloon-anim balloon-shape w-32 h-40 bg-stone-200/40 left-[80%]" style={{ animationDuration: '30s', animationDelay: '5s' }}></div>
-         {/* Balão 3 */}
-         <div className="balloon-anim balloon-shape w-16 h-20 bg-rose-300/20 left-[30%]" style={{ animationDuration: '20s', animationDelay: '10s' }}></div>
-         {/* Balão 4 */}
-         <div className="balloon-anim balloon-shape w-20 h-24 bg-amber-100/50 left-[60%]" style={{ animationDuration: '35s', animationDelay: '2s' }}></div>
-         {/* Balão 5 (fundo) */}
-         <div className="balloon-anim balloon-shape w-40 h-48 bg-white/60 left-[50%] blur-sm" style={{ animationDuration: '40s', animationDelay: '15s' }}></div>
-         {/* Balão 6 (extra para cobrir mais espaço) */}
+         <div className="balloon-anim balloon-shape w-16 h-20 bg-rose-300/20 left-[30%]" style={{ animationDuration: '22s', animationDelay: '10s' }}></div>
+         <div className="balloon-anim balloon-shape w-20 h-24 bg-amber-100/40 left-[60%]" style={{ animationDuration: '35s', animationDelay: '2s' }}></div>
+         <div className="balloon-anim balloon-shape w-40 h-48 bg-white/60 left-[50%] blur-md" style={{ animationDuration: '45s', animationDelay: '15s' }}></div>
          <div className="balloon-anim balloon-shape w-28 h-36 bg-rose-100/30 left-[20%]" style={{ animationDuration: '28s', animationDelay: '8s' }}></div>
+         
+         {/* Novos Balões para preencher e dar fluidez */}
+         <div className="balloon-anim balloon-shape w-14 h-18 bg-stone-100/50 left-[5%]" style={{ animationDuration: '20s', animationDelay: '12s' }}></div>
+         <div className="balloon-anim balloon-shape w-36 h-44 bg-rose-200/20 left-[90%]" style={{ animationDuration: '38s', animationDelay: '3s' }}></div>
+         <div className="balloon-anim balloon-shape w-22 h-26 bg-amber-50/50 left-[40%]" style={{ animationDuration: '32s', animationDelay: '18s' }}></div>
+         <div className="balloon-anim balloon-shape w-18 h-22 bg-rose-400/10 left-[70%]" style={{ animationDuration: '27s', animationDelay: '7s' }}></div>
+         <div className="balloon-anim balloon-shape w-44 h-52 bg-white/40 left-[25%] blur-md" style={{ animationDuration: '50s', animationDelay: '22s' }}></div>
+         <div className="balloon-anim balloon-shape w-12 h-14 bg-stone-200/30 left-[45%]" style={{ animationDuration: '18s', animationDelay: '1s' }}></div>
+         <div className="balloon-anim balloon-shape w-30 h-38 bg-rose-100/40 left-[85%]" style={{ animationDuration: '33s', animationDelay: '14s' }}></div>
+         <div className="balloon-anim balloon-shape w-26 h-32 bg-amber-100/30 left-[15%]" style={{ animationDuration: '29s', animationDelay: '25s' }}></div>
       </div>
 
       {/* --- NAVBAR --- */}
@@ -182,7 +190,6 @@ export default function LunierePortfolio() {
       </nav>
 
       {/* --- HERO SECTION --- */}
-      {/* Adicionado 'relative z-10' para garantir que o conteúdo fique sobre os balões */}
       <section id="inicio" className="pt-40 pb-20 px-6 md:pt-52 md:pb-32 relative z-10 min-h-[90vh] flex items-center justify-center">
         
         <div className="max-w-5xl mx-auto text-center space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
@@ -220,7 +227,7 @@ export default function LunierePortfolio() {
       </section>
 
       {/* --- GALERIA CAROUSEL --- */}
-      <section id="galeria" className="py-32 px-6 relative z-10"> {/* z-10 adicionado */}
+      <section id="galeria" className="py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <span className="text-rose-500 font-bold tracking-widest text-sm uppercase bg-white/50 backdrop-blur-sm px-2 py-1 rounded">Excelência Visual</span>
@@ -292,7 +299,7 @@ export default function LunierePortfolio() {
       </section>
 
       {/* --- SOBRE A JUYLIANNE --- */}
-      <section id="sobre" className="py-32 px-6 relative z-10"> {/* z-10 adicionado */}
+      <section id="sobre" className="py-32 px-6 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20 bg-white/60 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-sm border border-white/50">
           
           <div className="w-full md:w-1/2 relative group">
@@ -343,7 +350,7 @@ export default function LunierePortfolio() {
       </section>
 
       {/* --- FOOTER --- */}
-      <footer id="contato" className="bg-stone-950 text-white pt-32 pb-16 px-6 relative z-10"> {/* z-10 adicionado */}
+      <footer id="contato" className="bg-stone-950 text-white pt-32 pb-16 px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <h2 className="text-4xl md:text-6xl font-serif font-medium leading-tight">
             Vamos inflar essa ideia?
