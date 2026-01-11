@@ -386,7 +386,7 @@ export default function LunierePortfolio() {
 
           <div className="flex flex-wrap justify-center gap-6">
             <SocialLink 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/lunierebaloesdecor/?hl=pt-br" 
               icon={<Instagram size={24} />} 
               label="@luniere.decor" 
             />
